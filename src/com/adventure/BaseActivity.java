@@ -20,6 +20,9 @@ public class BaseActivity extends MapActivity {
 	static final String INTENT_ADVENTURE_PARAMS_COMPLETE = "intent_adventure_params_complete";
 	static final String INTENT_ADVENTURE = "intent_adventure";
 	static final String INTENT_ADVENTURE_PATH = "intent_adventure_path";
+	static final String INTENT_DISTANCE_TRAVELED = "intent_distance_traveled";
+	static final String INTENT_DURATION = "intent_duration";
+	static final String INTENT_START_TIME = "intent_start_time";
 	
 	@Override
 	protected void onResume() {

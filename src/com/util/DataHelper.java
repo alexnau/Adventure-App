@@ -14,50 +14,28 @@ import android.provider.BaseColumns;
 public class DataHelper {
 	//private static final String LOG_TAG = "DataHelper";
 
-	private static final String DATABASE_NAME = "sc2ranks.db";
-	private static final int DATABASE_VERSION = 6;
+	private static final String DATABASE_NAME = "adventure.db";
+	private static final int DATABASE_VERSION = 1;
 	
-	private static final String CREATE_CHARACTERS = "CREATE TABLE " + Table.CHARACTERS + "(" + 
-		Column.PRIMARY_KEY + " INTEGER PRIMARY KEY, " + 
-		Column.NAME + " TEXT, " + 
-		Column.PORTRAIT_BASE_ID + " INT, " + 
-		Column.PORTRAIT_ID + " INT, " + 
-		Column.DATE + " TEXT)";
-
-	private static final String CREATE_TEAM_VIEW_HISTORY = "CREATE TABLE " + Table.TEAM_VIEW_HISTORY + "(" + 
-		Column.PRIMARY_KEY + " INTEGER PRIMARY KEY, " + 
-		Column.TEAM_ID + " INT)";
-	
-	private static final String CREATE_CACHED_CHARACTER  = "CREATE TABLE " + Table.CACHED_CHARACTER + "(" + 
-		Column.PRIMARY_KEY + " INTEGER PRIMARY KEY, " + 
-		Column.CHARACTER_DATA + " TEXT, " + 
-		Column.DATE + " TEXT)";
-	
-	private static final String CREATE_CACHED_TEAM = "CREATE TABLE " + Table.CACHED_TEAM + "(" + 
-		Column.PRIMARY_KEY + " INTEGER PRIMARY KEY, " + 
-		Column.TEAM_DATA + " TEXT, " +
-		Column.COUNT + " INTEGER DEFAULT 1)";
+	private static final String CREATE_HISTORY = "CREATE TABLE " + Table.HISTORY + "(" + 
+		Column.PRIMARY_KEY + " INTEGER PRIMARY KEY, " +
+		Column.DESTINATION + " TEXT," + 
+		Column.DISTANCE_TRAVELED + " TEXT, " +
+		Column.DURATION + " TEXT, " + 
+		Column.ROUTE + " TEXT, " + 
+		Column.START_TIME + " TEXT)";
 
 	public static class Column implements BaseColumns {
-		public static final String CHARACTER_DATA = "character_data";
-		public static final String COUNT = "count";
-		public static final String DATE = "date";
-		public static final String NAME = "name";
-		public static final String PHONEID = "phoneID";
-		public static final String PORTRAIT = "portrait";
-		public static final String PORTRAIT_BASE_ID = "portrait_base_id";
-		public static final String PORTRAIT_ID = "portrait_id";
+		public static final String DESTINATION = "destination";
+		public static final String DISTANCE_TRAVELED = "distance_traveled";
+		public static final String DURATION = "duration";
+		public static final String ROUTE = "route";
 		public static final String PRIMARY_KEY = "id";
-		public static final String TEAM_DATA = "team_data";
-		public static final String TEAM_ID = "team_id";
+		public static final String START_TIME = "start_time";
 	}
 	
 	public static class Table implements BaseColumns {
-		public static final String CACHED_CHARACTER = "cached_characters_table";
-		public static final String CACHED_TEAM = "cached_team";
-		public static final String CHARACTERS = "characters_table";
-		public static final String PHONEID = "phoneid_table";
-		public static final String TEAM_VIEW_HISTORY = "team_view_history_table";
+		public static final String HISTORY = "history_table";
 	}
 
 	private Context context;
@@ -74,6 +52,12 @@ public class DataHelper {
 		db.close();
 	}
 	
+	/**
+	 * Checks if the table contains the entry with the primary integer key specified
+	 * @param table - the table to search
+	 * @param id - the id of the wanted entry
+	 * @return - true if the entry is in the table, false otherwise
+	 */
 	public boolean contains(String table, int id) {
 		boolean r;
 		
@@ -128,7 +112,7 @@ public class DataHelper {
 
 		db.beginTransaction();
 		try {
-			r = db.insert(table, Column.NAME, values);
+			r = db.insert(table, Column.START_TIME, values);
 			db.setTransactionSuccessful();
 		} catch (Exception e) {
 			return -1;
@@ -227,27 +211,12 @@ public class DataHelper {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			db.execSQL(CREATE_CHARACTERS);
-			db.execSQL(CREATE_TEAM_VIEW_HISTORY);
-			db.execSQL(CREATE_CACHED_CHARACTER);
-			db.execSQL(CREATE_CACHED_TEAM);
+			db.execSQL(CREATE_HISTORY);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			switch (oldVersion) {
-			case 0:
-			case 1:
-				db.execSQL("DROP TABLE IF EXISTS " + Table.CHARACTERS);
-				onCreate(db);
-			case 2:
-			case 3:
-				db.execSQL("DROP TABLE IF EXISTS " + Table.PHONEID);
-			case 4:
-				db.execSQL(CREATE_TEAM_VIEW_HISTORY);
-			case 5:
-				db.execSQL(CREATE_CACHED_CHARACTER);
-				db.execSQL(CREATE_CACHED_TEAM);
 			}
 		}
 	}

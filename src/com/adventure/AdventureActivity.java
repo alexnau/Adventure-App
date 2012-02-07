@@ -3,6 +3,7 @@ package com.adventure;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -125,10 +126,12 @@ public class AdventureActivity extends BaseActivity {
 	// Timer Objects
 	private Handler adventure_timer = new Handler();		// The Handler for the timer
 	private long start_time = -1;							// The start time of the adventure
+	private long curr_time = -1;							// THe current time
 	private Runnable update_timer = new Runnable() {		// Runnable for updating the timer
 	   public void run() {
 	       final long start = start_time;
-	       long millis = System.currentTimeMillis() - start;
+	       curr_time = System.currentTimeMillis();
+	       long millis = curr_time - start;
 	       int seconds = (int) (millis / 1000);
 	       int minutes = seconds / 60;
 	       int hours   = minutes / 60;
@@ -286,10 +289,30 @@ public class AdventureActivity extends BaseActivity {
     	btn_compass.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				fl_content.getChildAt(2).setVisibility(View.VISIBLE);
+				// TODO THIS IS FOR DEBUG ONLY
+				
+				
+				// Parse the start date/time into an actual date
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(start_time);
+				java.util.Date date = cal.getTime();
+				
+    			Intent i = new Intent(AdventureActivity.this, AdventureCompleteActivity.class);
+    			i.putExtra(INTENT_ADVENTURE, adventure);
+    			i.putExtra(INTENT_ADVENTURE_PATH, adventure_path_taken);
+    			i.putExtra(INTENT_DISTANCE_TRAVELED, tv_distance_travelled.getText().toString());
+    			i.putExtra(INTENT_DURATION, System.currentTimeMillis() - start_time);
+    			i.putExtra(INTENT_START_TIME, date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getYear());	// This is a placeholder for the line below it
+    			// i.putExtra(INTENT_START_TIME, date.toString());		// TODO FORMAT DATE
+    			startActivity(i);
+			
+    			finish();
+				
+    			// TODO THIS IS THE ACTUAL IMPLEMENTATION OF THIS METHOD
+				/*fl_content.getChildAt(2).setVisibility(View.VISIBLE);
 				
 				fl_content.getChildAt(0).setVisibility(View.GONE);
-				fl_content.getChildAt(1).setVisibility(View.GONE);
+				fl_content.getChildAt(1).setVisibility(View.GONE);*/
 			}
 		});
     	
@@ -503,10 +526,19 @@ public class AdventureActivity extends BaseActivity {
 					// We don't care about interrupts
 				}
 				
+				// Parse the start date/time into an actual date
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(start_time);
+				java.util.Date date = cal.getTime();
+				
 	    		if (Global.distFrom(location_listener.getGeoPoint(), new GeoPoint(adventure_route.get(adventure_route.size() - 1).getLatitudeE6(), adventure_route.get(adventure_route.size() - 1).getLongitudeE6())) < ADVENTURE_COMPLETE_RADIUS) {
 	    			Intent i = new Intent(AdventureActivity.this, AdventureCompleteActivity.class);
 	    			i.putExtra(INTENT_ADVENTURE, adventure);
 	    			i.putExtra(INTENT_ADVENTURE_PATH, adventure_path_taken);
+	    			i.putExtra(INTENT_DISTANCE_TRAVELED, Double.parseDouble(tv_distance_travelled.getText().toString().split(" ")[0]));
+	    			i.putExtra(INTENT_DURATION, System.currentTimeMillis() - start_time);
+	    			i.putExtra(INTENT_START_TIME, date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getYear());	// This is a placeholder for the line below it
+	    			// i.putExtra(INTENT_START_TIME, date.toString());		// TODO FORMAT DATE
 	    			startActivity(i);
 				
 	    			finish();

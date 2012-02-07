@@ -2,7 +2,9 @@ package com.adventure;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import com.google.android.maps.MapView;
 import com.obj.Adventure;
 import com.obj.Global;
 import com.obj.ParcelableGeoPoint;
+import com.util.DataHelper;
 
 public class AdventureCompleteActivity extends BaseActivity {
 	private int ROUTE_COLOR;					// The color of the route on the map
@@ -20,6 +23,9 @@ public class AdventureCompleteActivity extends BaseActivity {
 	// Ui Elements
 	MapView mapview;
 	TextView tv_adventure_name;
+	TextView tv_distance_traveled;
+	TextView tv_duration;
+	TextView tv_start_time;
 	
 	Adventure adventure = null;					// Adventure that was passed into the activity
 	ArrayList<GeoPoint> adventure_path = null;	// Path the user took on this adventure passed into the activity
@@ -48,15 +54,26 @@ public class AdventureCompleteActivity extends BaseActivity {
         	finish();
         }
         
+        String coord_string = "";
+        
         // Convert the adventure path from a ParcelableGeoPoint to just a normal GeoPoint
         adventure_path = new ArrayList<GeoPoint>();
-        for (int i = 0; i < parcelable_adventure_list.size(); i++)
+        for (int i = 0; i < parcelable_adventure_list.size(); i++) {
         	adventure_path.add(parcelable_adventure_list.get(i).getGeoPoint());
+        	
+        	coord_string += String.valueOf(adventure_path.get(adventure_path.size() - 1).getLatitudeE6());
+        	coord_string += ",";
+        	coord_string += String.valueOf(adventure_path.get(adventure_path.size() - 1).getLongitudeE6());
+        	coord_string += ";";
+        }
 
         // Initialize constants
         ROUTE_COLOR = getResources().getInteger(R.integer.route_color);
         
         initUI();
+        
+        UpdateDatabaseTask update_database_task = new UpdateDatabaseTask();
+        update_database_task.execute(new String[] { coord_string });
     }
     
     /**
@@ -101,5 +118,34 @@ public class AdventureCompleteActivity extends BaseActivity {
 	 	/* Adventure Name TextView */
 	 	tv_adventure_name = (TextView) findViewById(R.id.tv_adventure_name);
 	 	tv_adventure_name.setText(adventure.getName());
+	 	
+	 	/* Distance Traveled TextView */
+	 	tv_distance_traveled = (TextView) findViewById(R.id.tv_distance_traveled);
+	 	tv_distance_traveled.setText(getIntent().getStringExtra(INTENT_DISTANCE_TRAVELED));
+	 	
+	 	/* Duration TextView */
+	 	tv_duration = (TextView) findViewById(R.id.tv_duration);
+	 	tv_duration.setText(String.valueOf(getIntent().getLongExtra(INTENT_DURATION, 0)));
+	 	
+	 	/* Start Time TextView */
+	 	tv_start_time = (TextView) findViewById(R.id.tv_start_time);
+	 	tv_start_time.setText(getIntent().getStringExtra(INTENT_START_TIME));
+    }
+    
+    private class UpdateDatabaseTask extends AsyncTask<String, Void, Void> {
+		@Override
+		protected Void doInBackground(String... params) {
+	        ContentValues values = new ContentValues();
+	        values.put(DataHelper.Column.DESTINATION, adventure.getName());
+	        values.put(DataHelper.Column.DISTANCE_TRAVELED, getIntent().getStringExtra(INTENT_DISTANCE_TRAVELED));
+	        values.put(DataHelper.Column.DURATION, String.valueOf(getIntent().getLongExtra(INTENT_DURATION, 0)));
+	        values.put(DataHelper.Column.ROUTE, params[0]);
+	        values.put(DataHelper.Column.START_TIME, getIntent().getStringExtra(INTENT_START_TIME));
+	        
+	        DataHelper dataHelper = new DataHelper(AdventureCompleteActivity.this);
+	        dataHelper.insert(DataHelper.Table.HISTORY, values);
+	        dataHelper.close();
+			return null;
+		}
     }
 }
