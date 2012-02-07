@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:gravity="center"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:orientation="vertical"
+>
+	<com.view.AdventureTextView
+		style="@style/Text.Title"
+		android:id="@+id/tv_title"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="40dp"
+		android:text="Adventure Complete!"
+	/>
+	
+	<com.view.AdventureTextView
+		style="@style/Text"
+		android:id="@+id/tv_adventure_name"
+		android:layout_below="@id/tv_title"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="10dp"
+	/>
+	
+	<com.google.android.maps.MapView
+		android:apiKey="@string/maps_api_key"
+		android:clickable="false"
+		android:id="@+id/mapview"
+		android:layout_below="@id/tv_adventure_name"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:layout_width="wrap_content"
+	/>
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+>
+	<com.view.AdventureTextView
+		style="@style/Text.Title"
+		android:id="@+id/tv_title"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:text="Adventure Filters"
+	/>
+	
+	<com.view.AdventureTextView
+		style="@style/Text"
+		android:id="@+id/tv_keywords"
+		android:layout_below="@id/tv_title"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="10dp"
+		android:text="Keywords"
+	/>
+	
+	<com.view.AdventureEditText
+		style="@style/Text"
+		android:id="@+id/et_keywords"
+		android:layout_below="@id/tv_keywords"
+		android:layout_centerHorizontal="true"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_width="fill_parent"
+	/>
+	
+	<com.view.AdventureTextView
+		style="@style/Text"
+		android:id="@+id/tv_name"
+		android:layout_below="@id/et_keywords"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="20dp"
+		android:text="Name"
+	/>
+
+	<com.view.AdventureEditText
+		style="@style/Text"
+		android:id="@+id/et_name"
+		android:layout_below="@id/tv_name"
+		android:layout_centerHorizontal="true"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_width="fill_parent"
+	/>
+	
+	<RadioGroup
+		android:id="@+id/rg_mode"
+		android:layout_below="@id/et_name"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_width="wrap_content"
+	>
+		<RadioButton
+			style="@style/Text"
+			android:checked="true"
+			android:id="@+id/rb_driving"
+			android:layout_below="@id/et_name"
+			android:text="Driving"
+		/>
+		
+		<RadioButton
+			style="@style/Text"
+			android:id="@+id/rb_walking"
+			android:layout_below="@id/rb_driving"
+			android:text="Walking"
+		/>
+		
+		<RadioButton
+			style="@style/Text"
+			android:id="@+id/rb_bicycling"
+			android:layout_below="@id/rb_walking"
+			android:text="Bicycling"
+		/>
+	</RadioGroup>
+	
+	<com.view.AdventureButton
+		style="@style/Button.Generic"
+		android:id="@+id/btn_next"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:text="Next"
+	/>
+</RelativeLayout>

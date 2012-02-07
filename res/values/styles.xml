@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Button" parent="@android:style/Widget.Button">
+		<!-- TODO FILL THIS IN WITH DISPLAY STYLINGS -->
+		<item name="font">font/SEGOEPR.TTF</item>
+	</style>
+	
+	<style name="Button.Generic" parent="@style/Button">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">40dp</item>
+		<item name="android:layout_marginRight">40dp</item>
+		<item name="android:layout_width">fill_parent</item>
+	</style>
+	
+	<style name="Text" parent="@android:style/TextAppearance.Widget.TextView">
+		<!-- TODO FILL THIS IN WITH DISPLAY STYLINGS -->
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="font">font/SEGOEPR.TTF</item>
+	</style>
+	
+	<style name="Text.Large" parent="@style/Text">
+		<item name="android:gravity">center</item>
+		<item name="android:shadowColor">#000000</item>
+		<item name="android:shadowRadius">2</item>
+		<item name="android:textColor">#FFFFFF</item>
+		<item name="android:textSize">48sp</item>
+	</style>
+	
+	<style name="Text.Title" parent="@style/Text">
+		<item name="android:layout_margin">10dp</item>
+		<item name="android:shadowColor">#000000</item>
+		<item name="android:shadowRadius">1</item>
+		<item name="android:textColor">#FFFFFF</item>>
+		<item name="android:textSize">30sp</item>
+	</style>
+</resources>

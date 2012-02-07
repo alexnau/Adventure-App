@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">AdventureApp</string>
+    <string name="google_api_key">AIzaSyCu_fCMvwW5vX7pSwsFUG4YmEHbQj1X2ZA</string>
+    <!-- Desktop API Key --><string name="maps_api_key">0gyqwDNY3bRyHX8QCg24HvibYDqV9PwApmJwXlw</string>
+    <!--  Laptop API Key <string name="maps_api_key">0gyqwDNY3bRxhPXGCWE296ogOJOpgZYOxFJWlEg</string> -->
+    
+    <!--  UI Strings -->
+    <string name="finding_adventures">Finding\nAdventures\n...</string>
+    <string name="preparing_adventure">Preparing\nAdventure\n...</string>
+    <string name="initializing_adventure">Initializing\nAdventure\n...</string>
+    <string name="radius_prompt">Choose a Radius to Search</string>
+    
+    <!-- Preference Keys  -->
+	<string name="location_update_interval">location_update_interval</string>
+	<string name="measurement_system">measurement_system</string>
+	<string name="route_update_interval">route_update_interval</string>
+
+	<!-- Measurement Systems -->
+	<string-array name="measurement_systems">
+		<item>Imperial</item>
+		<item>Metric</item>
+	</string-array>
+	
+	<!-- Radius Choices -->
+	<string-array name="radius_choices_imperial">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>5</item>
+		<item>8</item>
+		<item>10</item>
+		<item>15</item>
+		<item>20</item>
+		<item>25</item>
+		<item>30</item>
+	</string-array>
+	
+	<string-array name="radius_choices_metric">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>5</item>
+		<item>10</item>
+		<item>15</item>
+		<item>20</item>
+		<item>25</item>
+		<item>35</item>
+		<item>50</item>
+	</string-array>
+	
+	<!--  Places API Categories -->
+	<string-array name="places_categories">
+		<item>All;</item>
+		<item>Arts &amp; Entertainment;amusement_park|aquarium|art_gallery|bar|book_store|casino|church|cemetery|florist|hindu_temple|library|mosque|movie_rental|movie_theater|museum|night_club|painter|park|pet_store|pharmacy|place_of_worship|shopping_mall|spa|stadium|synagogue|taxi_stand|university|zoo|point_of_interest</item>
+		<item>Home &amp; Garden;florist|furniture_store|general_contractor|home_goods_store|locksmith|lodging|park|plumber|storage</item>
+		<item>Automotive;car_dealer|car_rental|car_repair|car_wash|gas_station|parking|rv_park|taxi_stand</item>
+		<item>Business &amp; Professional Services;accounting|bank|city_hall|courthouse|electrician|finance|funeral_home|general_contractor|insurance_agency|lawyer|local_government_office|locksmith|moving_company|plumber|police|post_office|storage|travel_agency|veterinary_care</item>
+		<item>Legal &amp; Financial;accounting|atm|bank|courthouse|embassy|finance|insurance_agency|lawyer|local_government_office|post_office</item>
+		<item>Clothing &amp; Accessories;clothing_store|department_store|jewelry_store|laundry</item>
+		<item>Media &amp; Communications;post_office</item>
+		<item>Community &amp; Government;cemetery|church|city_hall|courthouse|embassy|fire_station|florist|funeral_home|lawyer|library|local_government_office|museum|night_club|park|pharmacy|police|post_office|real_estate_agency|restaurant|school|shopping_mall|stadium|university|zoo|point_of_interest</item>
+		<item>Personal Care &amp; Services;beauty_salon|dentist|department_store|doctor|gym|hair_care|health|hospital|jewelry_store|laundry|pharmacy|physiotherapist|spa</item>
+		<item>Computers &amp; Electronics;electronics_store|movie_rental</item>
+		<item>Real Estate;general_contractor|lodging|moving_company|park|real_estate_agency|roofing_contractor|rv_park|storage</item>
+		<item>Construction &amp; Contractors;electrician|general_contractor|hardware_store|plumber|roofing_contractor</item>
+		<item>Shopping;bakery|book_store|clothing_store|convenience_store|department_store|electronics_store|furniture_store|grocery_or_supermarket|hardware_store|home_goods_store|jewelry_store|liquor_store|movie_rental|pet_store|pharmacy|shoe_store|shopping_mall|store</item>
+		<item>Education;book_store|library|school|university|zoo|point_of_interest</item>
+		<item>Sports &amp; Recreation;book_store|bowling_alley|campground|casino|gym|hardware_store|movie_rental|movie_theater|museum|night_club|painter|park|spa|stadium|zoo</item>
+		<item>Food &amp; Dining;bakery|bar|cafe|convenience_store|food|gas_station|grocery_or_supermarket|liquor_store|meal_delivery|meal_takeaway|restaurant|shopping_mall|store</item>
+		<item>Travel &amp; Transportation;airport|bus_station|campground|embassy|gas_station|insurance_agency|lodging|moving_company|parking|real_estate_agency|rv_park|subway_station|taxi_stand|train_station|travel_agency|transit_station</item>
+		<item>Health &amp; Medicine;beauty_salon|cemetery|dentist|department_store|doctor|funeral_home|gym|hair_care|health|hospital|liquor_store|meal_delivery|meal_takeaway|pharmacy|physiotherapist|spa|veterinary_care</item>
+	</string-array>
+</resources>

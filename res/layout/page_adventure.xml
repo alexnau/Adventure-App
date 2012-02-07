@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/vf_flipper"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+>
+	<LinearLayout
+		android:gravity="center"
+		android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:orientation="vertical"
+	>
+		<ProgressBar
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+		/>
+		
+		<com.view.AdventureTextView
+			style="@style/Text.Large"
+			android:text="@string/initializing_adventure"
+		/>
+	</LinearLayout>
+	
+	<RelativeLayout
+		android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+	>
+		<LinearLayout
+			android:gravity="center_horizontal"
+			android:id="@+id/ll_button_bar"
+			android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+		>
+			<com.view.AdventureButton
+				style="@style/Button"
+				android:id="@+id/btn_mapview"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Map"
+			/>
+	
+			<com.view.AdventureButton
+				style="@style/Button"
+				android:id="@+id/btn_directions"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Directions"
+			/>
+			
+			<com.view.AdventureButton
+				style="@style/Button"
+				android:id="@+id/btn_compass"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Compass"
+			/>
+		</LinearLayout>
+		
+		<TableLayout
+			android:layout_centerHorizontal="true"
+			android:id="@+id/ll_adventure_data"
+			android:layout_above="@id/ll_button_bar"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_width="wrap_content"
+		>
+			<TableRow>
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="20dp"
+					android:layout_width="wrap_content"
+					android:text="Travelled:"
+				/>
+				
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:gravity="right"
+					android:id="@+id/tv_distance_travelled"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="20dp"
+					android:layout_width="wrap_content"
+				/>
+				
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:gravity="right"
+					android:id="@+id/tv_time_travelled"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="0:00"
+				/>
+			</TableRow>
+			
+			<TableRow>
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="20dp"
+					android:layout_width="wrap_content"
+					android:text="Remaining:"
+				/>
+				
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:gravity="right"
+					android:id="@+id/tv_distance_left"
+					android:layout_height="wrap_content"
+					android:layout_marginRight="20dp"
+					android:layout_width="wrap_content"
+				/>
+	
+				<com.view.AdventureTextView
+					style="@style/Text"
+					android:gravity="right"
+					android:id="@+id/tv_time_left"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+				/>
+			</TableRow>
+		</TableLayout>
+		
+		<FrameLayout
+			android:id="@+id/fl_content"
+			android:layout_above="@id/ll_adventure_data"
+			android:layout_height="fill_parent"
+			android:layout_margin="20dp"
+			android:layout_width="fill_parent"
+		>
+			<com.google.android.maps.MapView
+				android:apiKey="@string/maps_api_key"
+				android:clickable="true"
+				android:id="@+id/mapview"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+			/>
+			
+			<ListView
+				android:id="@+id/lv_directions"
+				android:layout_alignParentBottom="true"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:scrollbars="none"
+				android:visibility="gone"
+			/>
+			
+			<FrameLayout
+				android:id="@+id/fl_compass_frame"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:visibility="gone"
+			/>
+		</FrameLayout>
+	</RelativeLayout>
+</ViewFlipper>

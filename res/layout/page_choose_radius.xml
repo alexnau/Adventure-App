@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+>
+	<com.view.AdventureTextView
+		style="@style/Text.Title"
+		android:id="@+id/atv_title"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:text="Adventure Radius"
+	/>
+	
+	<com.view.AdventureButton
+		style="@style/Button.Generic"
+		android:id="@+id/btn_find_adventure"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:text="Find Adventure!"
+	/>
+	
+	<Spinner
+		android:id="@+id/spr_radius"
+		android:layout_above="@id/btn_find_adventure"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="5dp"
+		android:layout_width="fill_parent"
+		android:prompt="@string/radius_prompt"
+	/>
+
+	<com.google.android.maps.MapView
+		android:apiKey="@string/maps_api_key"
+		android:clickable="true"
+		android:id="@+id/mapview"
+		android:layout_above="@id/spr_radius"
+		android:layout_below="@id/tv_title"
+		android:layout_height="fill_parent"
+		android:layout_margin="20dp"
+		android:layout_width="fill_parent"
+	/>
+</RelativeLayout>

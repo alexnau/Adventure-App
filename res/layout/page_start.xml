@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:gravity="center"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:orientation="vertical"
+>
+	<com.view.AdventureTextView
+		style="@style/Text.Large"
+		android:layout_marginBottom="60dp"
+		android:text="Adventure App!"
+	/>
+	
+	<com.view.AdventureButton
+		style="@style/Button.Generic"
+		android:id="@+id/btn_new_adventure"
+		android:text="New Adventure"
+	/>
+	
+	<com.view.AdventureButton
+		style="@style/Button.Generic"
+		android:id="@+id/btn_previous_adventures"
+		android:text="Previous Adventures"
+	/>
+	
+	<com.view.AdventureButton
+		style="@style/Button.Generic"
+		android:id="@+id/btn_settings"
+		android:text="Settings"
+	/>
+	
+	<com.google.android.maps.MapView
+		android:apiKey="@string/maps_api_key"
+		android:clickable="false"
+		android:id="@+id/mapview"
+		android:layout_height="0dp"
+		android:layout_width="0dp"
+		android:visibility="invisible"
+	/>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="adventure_complete_radius">25</integer>
+	<integer name="adventure_radius_step_factor">1000</integer>
+	<integer name="icon_update_interval">50</integer>
+	<integer name="location_update_interval">5000</integer>
+	<integer name="max_gps_error">20</integer>
+	<integer name="max_slider_progress">49</integer>
+	<integer name="min_adventure_radius">1000</integer>
+	<integer name="proximity_alert_radius">50</integer>
+	<integer name="route_color">-65536</integer>
+	<integer name="route_update_interval">3000</integer>
+</resources>

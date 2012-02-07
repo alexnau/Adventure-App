@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+>
+	<ListPreference
+		android:defaultValue="Imperial"
+		android:dialogTitle="Measurement System"
+		android:entries="@array/measurement_systems"
+		android:entryValues="@array/measurement_systems"
+		android:negativeButtonText="Cancel"
+		android:positiveButtonText="Done"
+		android:key="@string/measurement_system"
+		android:summary="The measurement system for the app.  Imperial is feet and miles while metric is meters and kilometers."
+		android:title="Measurement System"
+	/>
+	
+	<EditTextPreference
+		android:defaultValue="@integer/location_update_interval"
+		android:dialogTitle="Location Update Interval"
+		android:negativeButtonText="Cancel"
+		android:numeric="integer"
+		android:positiveButtonText="Done"
+		android:key="@string/location_update_interval"
+		android:summary="The number of milliseconds between location updates.  The lower the number, the more accurate/often your location will be updated at the cost of more battery."
+		android:title="Location Update Interval"
+	/>
+	
+	<EditTextPreference
+		android:defaultValue="@integer/route_update_interval"
+		android:dialogTitle="Route Update Interval"
+		android:negativeButtonText="Cancel"
+		android:numeric="integer"
+		android:positiveButtonText="Done"
+		android:key="@string/route_update_interval"
+		android:summary="The number of milliseconds between route updates.  The lower the number, the more accurate/often your route will be updated at teh cost of more battery."
+		android:title="Route Update Interval"
+	/>
+</PreferenceScreen>
