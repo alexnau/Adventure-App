@@ -12,7 +12,7 @@
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
 		android:layout_marginBottom="40dp"
-		android:text="Adventure Complete!"
+		android:text="@string/view_adventure"
 	/>
 	
 	<com.view.AdventureTextView

@@ -10,15 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adventure.R;
-import com.obj.Global;
-import com.obj.Placemark;
 
-public class DirectionsAdapter extends ArrayAdapter<Placemark> {
-    private ArrayList<Placemark> items;
-    
+import com.obj.StoredAdventure;
+
+public class StoredAdventureAdapter extends ArrayAdapter<StoredAdventure> {
+	private ArrayList<StoredAdventure> items;
+	
     Context ctx;
     
-    public DirectionsAdapter(Context context, int textViewResourceId, ArrayList<Placemark> items) {
+    public StoredAdventureAdapter(Context context, int textViewResourceId, ArrayList<StoredAdventure> items) {
             super(context, textViewResourceId, items);
             this.items = items;
             
@@ -37,14 +37,12 @@ public class DirectionsAdapter extends ArrayAdapter<Placemark> {
     	View v = convertView;
     	if (v == null) {
     		LayoutInflater vi = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    		v = vi.inflate(R.layout.li_directions, null);
+    		v = vi.inflate(R.layout.li_previous_adventure, null);
     	}
     	
-    	((TextView) v.findViewById(R.id.tv_directions)).setText(items.get(position).getTitle());
+    	((TextView) v.findViewById(R.id.tv_destination)).setText(items.get(position).getDestination());
+		((TextView) v.findViewById(R.id.tv_start_time)).setText(items.get(position).getStart_time());
     	
-    	if (items.get(position).getDescription() != null)
-    		((TextView) v.findViewById(R.id.tv_description)).setText(items.get(position).getDescription().replaceAll(Global.HTML_ENCODED_SPACE, " "));
-		
         return v;
     }
 }

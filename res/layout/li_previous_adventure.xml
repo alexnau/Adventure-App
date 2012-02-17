@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+>
+	<com.view.AdventureTextView
+		style="@style/Text"
+		android:id="@+id/tv_destination"
+		android:layout_width="fill_parent"
+		android:textSize="20sp"
+	/>
+	
+	<com.view.AdventureTextView
+		style="@style/Text"
+		android:id="@+id/tv_start_time"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_below="@id/tv_destination"
+	/>
+</RelativeLayout>

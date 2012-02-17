@@ -72,7 +72,8 @@ public class StartActivity extends BaseActivity {
     	btn_previous_adventures.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO CREATE PREVIOUS ADVENTURES ACTIVITY
+				Intent i = new Intent(StartActivity.this, BrowsePreviousActivity.class);
+				startActivity(i);
 			}
     	});
     	

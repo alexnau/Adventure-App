@@ -11,6 +11,7 @@
     <string name="preparing_adventure">Preparing\nAdventure\n...</string>
     <string name="initializing_adventure">Initializing\nAdventure\n...</string>
     <string name="radius_prompt">Choose a Radius to Search</string>
+    <string name="view_adventure">View Adventure</string>
     
     <!-- Preference Keys  -->
 	<string name="location_update_interval">location_update_interval</string>

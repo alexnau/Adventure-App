@@ -297,12 +297,12 @@ public class AdventureActivity extends BaseActivity {
 				cal.setTimeInMillis(start_time);
 				java.util.Date date = cal.getTime();
 				
-    			Intent i = new Intent(AdventureActivity.this, AdventureCompleteActivity.class);
+    			Intent i = new Intent(AdventureActivity.this, ViewAdventureActivity.class);
     			i.putExtra(INTENT_ADVENTURE, adventure);
     			i.putExtra(INTENT_ADVENTURE_PATH, adventure_path_taken);
     			i.putExtra(INTENT_DISTANCE_TRAVELED, tv_distance_travelled.getText().toString());
     			i.putExtra(INTENT_DURATION, System.currentTimeMillis() - start_time);
-    			i.putExtra(INTENT_START_TIME, date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getYear());	// This is a placeholder for the line below it
+    			i.putExtra(INTENT_START_TIME, date.getHours() + ":" + date.getMinutes() + " " + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getYear());	// This is a placeholder for the line below it
     			// i.putExtra(INTENT_START_TIME, date.toString());		// TODO FORMAT DATE
     			startActivity(i);
 			
@@ -532,7 +532,7 @@ public class AdventureActivity extends BaseActivity {
 				java.util.Date date = cal.getTime();
 				
 	    		if (Global.distFrom(location_listener.getGeoPoint(), new GeoPoint(adventure_route.get(adventure_route.size() - 1).getLatitudeE6(), adventure_route.get(adventure_route.size() - 1).getLongitudeE6())) < ADVENTURE_COMPLETE_RADIUS) {
-	    			Intent i = new Intent(AdventureActivity.this, AdventureCompleteActivity.class);
+	    			Intent i = new Intent(AdventureActivity.this, ViewAdventureActivity.class);
 	    			i.putExtra(INTENT_ADVENTURE, adventure);
 	    			i.putExtra(INTENT_ADVENTURE_PATH, adventure_path_taken);
 	    			i.putExtra(INTENT_DISTANCE_TRAVELED, Double.parseDouble(tv_distance_travelled.getText().toString().split(" ")[0]));

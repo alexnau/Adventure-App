@@ -10,14 +10,13 @@ import android.widget.TextView;
 
 import com.components.IconOverlay;
 import com.components.RouteOverlay;
-import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.obj.Adventure;
 import com.obj.Global;
 import com.obj.ParcelableGeoPoint;
 import com.util.DataHelper;
 
-public class AdventureCompleteActivity extends BaseActivity {
+public class ViewAdventureActivity extends BaseActivity {
 	private int ROUTE_COLOR;					// The color of the route on the map
 	
 	// Ui Elements
@@ -27,8 +26,13 @@ public class AdventureCompleteActivity extends BaseActivity {
 	TextView tv_duration;
 	TextView tv_start_time;
 	
-	Adventure adventure = null;					// Adventure that was passed into the activity
-	ArrayList<GeoPoint> adventure_path = null;	// Path the user took on this adventure passed into the activity
+	// Says if the Activity received an Adventure
+	// If it has, we'll save it to the database and use its Name field
+	// If it hasn't, we'll use the destination intent and not save it
+	boolean hasAdventure = true;
+	
+	Adventure adventure = null;								// Adventure that was passed into the activity
+	ArrayList<ParcelableGeoPoint> adventure_path = null;	// Path the user took on this adventure passed into the activity
 	
     /** Called when the activity is first created. */
 	@Override
@@ -41,39 +45,32 @@ public class AdventureCompleteActivity extends BaseActivity {
         
         // Error if the adventure is passed incorrectly
         if (adventure == null) {
-        	Global.outputError(AdventureCompleteActivity.this, Global.Error.INTENT_ADVENTURE_ERROR);
-        	finish();
+        	hasAdventure = false;
         }
         
         // Get the adventure path
-        ArrayList<ParcelableGeoPoint> parcelable_adventure_list = getIntent().getParcelableArrayListExtra(INTENT_ADVENTURE_PATH);
+        adventure_path = getIntent().getParcelableArrayListExtra(INTENT_ADVENTURE_PATH);
         
         // Error if the adventure path is passed incorrectly
-        if (parcelable_adventure_list == null) {
-        	Global.outputError(AdventureCompleteActivity.this, Global.Error.INTENT_ADVENTURE_PATH);
+        if (adventure_path == null) {
+        	Global.outputError(ViewAdventureActivity.this, Global.Error.INTENT_ADVENTURE_PATH);
+        	
         	finish();
+        	return;
         }
-        
-        String coord_string = "";
         
         // Convert the adventure path from a ParcelableGeoPoint to just a normal GeoPoint
-        adventure_path = new ArrayList<GeoPoint>();
-        for (int i = 0; i < parcelable_adventure_list.size(); i++) {
-        	adventure_path.add(parcelable_adventure_list.get(i).getGeoPoint());
-        	
-        	coord_string += String.valueOf(adventure_path.get(adventure_path.size() - 1).getLatitudeE6());
-        	coord_string += ",";
-        	coord_string += String.valueOf(adventure_path.get(adventure_path.size() - 1).getLongitudeE6());
-        	coord_string += ";";
-        }
+        String coord_string = ParcelableGeoPoint.arrayListToString(adventure_path);
 
         // Initialize constants
         ROUTE_COLOR = getResources().getInteger(R.integer.route_color);
         
         initUI();
         
-        UpdateDatabaseTask update_database_task = new UpdateDatabaseTask();
-        update_database_task.execute(new String[] { coord_string });
+        if (hasAdventure) {
+        	UpdateDatabaseTask update_database_task = new UpdateDatabaseTask();
+        	update_database_task.execute(new String[] { coord_string });
+        }
     }
     
     /**
@@ -86,22 +83,22 @@ public class AdventureCompleteActivity extends BaseActivity {
 		mapview.getOverlays().clear();
 
 		// Max and min latitudes of the route; we use these to find the span of the mapview
-		int max_latitude = adventure_path.get(0).getLatitudeE6();
-		int min_latitude = adventure_path.get(0).getLatitudeE6();
+		int max_latitude = adventure_path.get(0).getGeoPoint().getLatitudeE6();
+		int min_latitude = adventure_path.get(0).getGeoPoint().getLatitudeE6();
 		
 		// Max and min longitudes of the route; we use these to find the span of the mapview
-		int max_longitude = adventure_path.get(0).getLongitudeE6();
-		int min_longitude = adventure_path.get(0).getLongitudeE6();
+		int max_longitude = adventure_path.get(0).getGeoPoint().getLongitudeE6();
+		int min_longitude = adventure_path.get(0).getGeoPoint().getLongitudeE6();
 		
 		// Draw the route
 	 	for (int i = 1; i < adventure_path.size(); i++) {
-	 		mapview.getOverlays().add(new RouteOverlay(adventure_path.get(i - 1), adventure_path.get(i), ROUTE_COLOR));
+	 		mapview.getOverlays().add(new RouteOverlay(adventure_path.get(i - 1).getGeoPoint(), adventure_path.get(i).getGeoPoint(), ROUTE_COLOR));
 	 		
-	 		max_latitude = (max_latitude < adventure_path.get(i).getLatitudeE6()) ? adventure_path.get(i).getLatitudeE6() : max_latitude;
-	 		min_latitude = (min_latitude > adventure_path.get(i).getLatitudeE6()) ? adventure_path.get(i).getLatitudeE6() : min_latitude;
+	 		max_latitude = (max_latitude < adventure_path.get(i).getGeoPoint().getLatitudeE6()) ? adventure_path.get(i).getGeoPoint().getLatitudeE6() : max_latitude;
+	 		min_latitude = (min_latitude > adventure_path.get(i).getGeoPoint().getLatitudeE6()) ? adventure_path.get(i).getGeoPoint().getLatitudeE6() : min_latitude;
 	 		
-	 		max_longitude = (max_longitude < adventure_path.get(i).getLongitudeE6()) ? adventure_path.get(i).getLongitudeE6() : max_longitude;
-	 		min_longitude = (min_longitude > adventure_path.get(i).getLongitudeE6()) ? adventure_path.get(i).getLongitudeE6() : min_longitude;
+	 		max_longitude = (max_longitude < adventure_path.get(i).getGeoPoint().getLongitudeE6()) ? adventure_path.get(i).getGeoPoint().getLongitudeE6() : max_longitude;
+	 		min_longitude = (min_longitude > adventure_path.get(i).getGeoPoint().getLongitudeE6()) ? adventure_path.get(i).getGeoPoint().getLongitudeE6() : min_longitude;
 	 	}
 	    
 	 	// Fit the route in the mapview
@@ -109,15 +106,18 @@ public class AdventureCompleteActivity extends BaseActivity {
 	 	
 	 	// Draw the start and end points
  		// TODO MAKE START ICON
- 		mapview.getOverlays().add(new IconOverlay(adventure_path.get(0), BitmapFactory.decodeResource(getResources(), R.drawable.loc_icon), 0.0f));
+ 		mapview.getOverlays().add(new IconOverlay(adventure_path.get(0).getGeoPoint(), BitmapFactory.decodeResource(getResources(), R.drawable.loc_icon), 0.0f));
  		// TODO MAKE END ICON
- 		mapview.getOverlays().add(new IconOverlay(adventure_path.get(adventure_path.size() - 1), BitmapFactory.decodeResource(getResources(), R.drawable.loc_icon), 0.0f));
+ 		mapview.getOverlays().add(new IconOverlay(adventure_path.get(adventure_path.size() - 1).getGeoPoint(), BitmapFactory.decodeResource(getResources(), R.drawable.loc_icon), 0.0f));
 	 	
 	 	mapview.invalidate();
 	 	
 	 	/* Adventure Name TextView */
 	 	tv_adventure_name = (TextView) findViewById(R.id.tv_adventure_name);
-	 	tv_adventure_name.setText(adventure.getName());
+	 	if (hasAdventure)
+	 		tv_adventure_name.setText(adventure.getName());
+	 	else
+	 		tv_adventure_name.setText(getIntent().getStringExtra(INTENT_DESTINATION));
 	 	
 	 	/* Distance Traveled TextView */
 	 	tv_distance_traveled = (TextView) findViewById(R.id.tv_distance_traveled);
@@ -142,7 +142,7 @@ public class AdventureCompleteActivity extends BaseActivity {
 	        values.put(DataHelper.Column.ROUTE, params[0]);
 	        values.put(DataHelper.Column.START_TIME, getIntent().getStringExtra(INTENT_START_TIME));
 	        
-	        DataHelper dataHelper = new DataHelper(AdventureCompleteActivity.this);
+	        DataHelper dataHelper = new DataHelper(ViewAdventureActivity.this);
 	        dataHelper.insert(DataHelper.Table.HISTORY, values);
 	        dataHelper.close();
 			return null;
