@@ -29,11 +29,13 @@ import com.view.AdventureButton;
 public class ChooseRadiusActivity extends BaseActivity {
 	// Progress update code for UpdateOverlayTask
 	private static enum UPDATE_OVERLAY_STATUS {
+		ENABLE_ADVENTURE_START,
 		ENABLE_GPS_UPDATES,
 		DISABLE_GPS_UPDATES,
 		UPDATE_OVERLAY
 	}
 	
+	private int MAX_GPS_ERROR;					// Maximum GPS error when saving the adventure path (in meters)
 	private int ROUTE_COLOR;					// Color of the radius to be drawn on the map
 	
 	private static final int START_ZOOM_LEVEL = 15;
@@ -71,6 +73,7 @@ public class ChooseRadiusActivity extends BaseActivity {
         }
 
         // Initialize some constants
+        MAX_GPS_ERROR = getResources().getInteger(R.integer.max_gps_error);
         ROUTE_COLOR = getResources().getInteger(R.integer.route_color);
         
         initUI();
@@ -131,6 +134,9 @@ public class ChooseRadiusActivity extends BaseActivity {
 				startActivityForResult(i, INTENT_SETTINGS_RESULTCODE);
 			}
 		});
+    	
+    	// Disable the Start Adventure button initially
+    	btn_find_adventure.setEnabled(false);
     	
     	/* MapView */
     	mapview = (MapView) findViewById(R.id.mapview);
@@ -213,7 +219,9 @@ public class ChooseRadiusActivity extends BaseActivity {
 		return false;
 	}
     
-    private class UpdateOverlayTask extends AsyncTask<Void, UPDATE_OVERLAY_STATUS, Void> {    	
+    private class UpdateOverlayTask extends AsyncTask<Void, UPDATE_OVERLAY_STATUS, Void> {
+    	boolean found_good_start = false;
+    	
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -230,15 +238,23 @@ public class ChooseRadiusActivity extends BaseActivity {
 					// We don't care about interrupts
 				}
 				
-				if (location_listener.getLocation() != null)
+				if (location_listener.getLocation() != null) {
+					if (location_listener.getLocation().getAccuracy() <= MAX_GPS_ERROR) {
+						found_good_start = true;
+						publishProgress(UPDATE_OVERLAY_STATUS.ENABLE_ADVENTURE_START);
+					}
+					
+					publishProgress(UPDATE_OVERLAY_STATUS.UPDATE_OVERLAY);
+				}
+				
+				if (found_good_start) {
 					publishProgress(UPDATE_OVERLAY_STATUS.DISABLE_GPS_UPDATES);
 				
-				publishProgress(UPDATE_OVERLAY_STATUS.UPDATE_OVERLAY);
-				
-				try {
-					Thread.sleep(Global.preferences_manager.getLocation_update_interval());
-				} catch (InterruptedException e) {
-					// We don't care about interrupts
+					try {
+						Thread.sleep(Global.preferences_manager.getLocation_update_interval());
+					} catch (InterruptedException e) {
+						// We don't care about interrupts
+					}
 				}
 			}
 			
@@ -262,6 +278,9 @@ public class ChooseRadiusActivity extends BaseActivity {
 			super.onProgressUpdate(values);
 			
 			switch (values[0]) {
+			case ENABLE_ADVENTURE_START:
+				btn_find_adventure.setEnabled(true);
+				break;
 			case ENABLE_GPS_UPDATES:
 				location_manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, location_listener);	
 				break;

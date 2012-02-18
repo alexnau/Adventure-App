@@ -17,7 +17,7 @@ public class MyLocationListener implements LocationListener {
 	public void onLocationChanged(Location loc) {
         if (loc != null) {
         	location = loc;
-        	
+
 			Log.i(this.getClass().getCanonicalName(), "Location Updated");
         }
     }
