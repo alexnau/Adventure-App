@@ -7,10 +7,13 @@
     <!--  Laptop API Key <string name="maps_api_key">0gyqwDNY3bRxhPXGCWE296ogOJOpgZYOxFJWlEg</string> -->
     
     <!--  UI Strings -->
-    <string name="finding_adventures">Finding\nAdventures\n...</string>
-    <string name="preparing_adventure">Preparing\nAdventure\n...</string>
-    <string name="initializing_adventure">Initializing\nAdventure\n...</string>
+    <string name="distance_travelled">Distance Traveled:</string>
+    <string name="duration">Duration:</string>
+    <string name="finding_adventures">Finding\nAdventures\n&#8230;</string>
+    <string name="preparing_adventure">Preparing\nAdventure\n&#8230;</string>
+    <string name="initializing_adventure">Initializing\nAdventure\n&#8230;</string>
     <string name="radius_prompt">Choose a Radius to Search</string>
+    <string name="start_time">Start Time:</string>
     <string name="view_adventure">View Adventure</string>
     
     <!-- Preference Keys  -->

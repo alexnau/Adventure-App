@@ -34,7 +34,7 @@
 	    <TableRow>
 			<com.view.AdventureTextView
 				style="@style/Text"
-				android:text="Start Time:"
+				android:text="@string/start_time"
 			/>
 			
 			<com.view.AdventureTextView
@@ -47,7 +47,7 @@
 	    <TableRow>
 			<com.view.AdventureTextView
 				style="@style/Text"
-				android:text="Duration:"
+				android:text="@string/duration"
 			/>
 			
 			<com.view.AdventureTextView
@@ -60,7 +60,7 @@
 	    <TableRow>
 			<com.view.AdventureTextView
 				style="@style/Text"
-				android:text="Distance Travelled:"
+				android:text="@string/distance_travelled"
 			/>
 			
 			<com.view.AdventureTextView

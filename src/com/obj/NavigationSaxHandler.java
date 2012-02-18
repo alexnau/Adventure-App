@@ -11,13 +11,13 @@ public class NavigationSaxHandler extends DefaultHandler {
 	// Fields
 	// ===========================================================
 
-	private boolean in_kmltag = false;
-	private boolean in_placemarktag = false;
+	//private boolean in_kmltag = false;
+	//private boolean in_placemarktag = false;
 	private boolean in_nametag = false;
 	private boolean in_descriptiontag = false;
-	private boolean in_geometrycollectiontag = false;
-	private boolean in_linestringtag = false;
-	private boolean in_pointtag = false;
+	//private boolean in_geometrycollectiontag = false;
+	//private boolean in_linestringtag = false;
+	//private boolean in_pointtag = false;
 	private boolean in_coordinatestag = false;
 
 	private StringBuffer buffer;
@@ -54,20 +54,20 @@ public class NavigationSaxHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		if (localName.equals(Global.Google.Maps.Result.KML)) {
-			this.in_kmltag = true;
+			//this.in_kmltag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.PLACEMARK)) {
-			this.in_placemarktag = true;
+			//this.in_placemarktag = true;
 			navigationDataSet.setCurrentPlacemark(new Placemark());
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.NAME)) {
 			this.in_nametag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.DESCRIPTION)) {
 			this.in_descriptiontag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.GeometryCollection.GEOMETRY_COLLECTION)) {
-			this.in_geometrycollectiontag = true;
+			//this.in_geometrycollectiontag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.GeometryCollection.LineString.LINE_STRING)) {
-			this.in_linestringtag = true;
+			//this.in_linestringtag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.Point.POINT)) {
-			this.in_pointtag = true;
+			//this.in_pointtag = true;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.Point.COORDINATES)) {
 			buffer = new StringBuffer();
 			this.in_coordinatestag = true;
@@ -80,9 +80,9 @@ public class NavigationSaxHandler extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
 		if (localName.equals(Global.Google.Maps.Result.KML)) {
-			this.in_kmltag = false;
+			//this.in_kmltag = false;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.PLACEMARK)) {
-			this.in_placemarktag = false;
+			//this.in_placemarktag = false;
 
 			if ("Route".equals(navigationDataSet.getCurrentPlacemark().getTitle()))
 				navigationDataSet.setRoutePlacemark(navigationDataSet.getCurrentPlacemark());
@@ -93,11 +93,11 @@ public class NavigationSaxHandler extends DefaultHandler {
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.DESCRIPTION)) {
 			this.in_descriptiontag = false;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.GeometryCollection.GEOMETRY_COLLECTION)) {
-			this.in_geometrycollectiontag = false;
+			//this.in_geometrycollectiontag = false;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.GeometryCollection.LineString.LINE_STRING)) {
-			this.in_linestringtag = false;
+			//this.in_linestringtag = false;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.Point.POINT)) {
-			this.in_pointtag = false;
+			//this.in_pointtag = false;
 		} else if (localName.equals(Global.Google.Maps.Result.Document.Placemark.Point.COORDINATES)) {
 			this.in_coordinatestag = false;
 		}

@@ -1,12 +1,8 @@
 package com.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
-
-import com.adventure.R;
 
 public class AdventureButton extends Button {
     public AdventureButton(Context context) {

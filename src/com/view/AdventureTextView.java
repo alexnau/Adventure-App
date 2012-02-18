@@ -1,12 +1,8 @@
 package com.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import com.adventure.R;
 
 public class AdventureTextView extends TextView {
     public AdventureTextView(Context context) {
