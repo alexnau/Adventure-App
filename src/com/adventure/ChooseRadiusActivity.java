@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -201,6 +202,22 @@ public class ChooseRadiusActivity extends BaseActivity {
     	
     	// Clear the current overlays
         mapview.getOverlays().clear();
+        
+        // Draw the circle overlay
+        int circleWidth = (int) metersToProjectedPixels(radiusToMeters(), location_listener.getLocation().getLatitude());
+        
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getHeight();
+
+        //Pixel threshold for when the circle goes off the screen (width returned seems to be very high)
+        while(circleWidth > (width/2.5)-(2*40)) {
+        	if(mapview.getZoomLevel() > 1) {
+        		map_controller.setZoom(mapview.getZoomLevel()-1);
+        		circleWidth = (int) metersToProjectedPixels(radiusToMeters(), location_listener.getLocation().getLatitude());
+        	}
+        	else
+        		break;
+        }
         
         // Draw the circle overlay
         CircleOverlay radiusOverlay = new CircleOverlay(location_listener.getGeoPoint(), (int) metersToProjectedPixels(radiusToMeters(), location_listener.getLocation().getLatitude()), ROUTE_COLOR);
