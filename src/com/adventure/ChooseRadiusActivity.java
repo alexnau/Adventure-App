@@ -218,6 +218,15 @@ public class ChooseRadiusActivity extends BaseActivity {
         	else
         		break;
         }
+      //Check to make sure the circle isn't too small
+        while(circleWidth < width/7.5) {	//This seven seems to work very well, as 5 makes it too large and 10 makes it too small (find better way?)
+        	if(mapview.getZoomLevel() < 15) {	//Check to see if were fully zoomed in
+        		map_controller.setZoom(mapview.getZoomLevel()+1);
+        		circleWidth = (int) metersToProjectedPixels(radiusToMeters(), location_listener.getLocation().getLatitude());
+        	}
+        	else
+        		break;
+        }
         
         // Draw the circle overlay
         CircleOverlay radiusOverlay = new CircleOverlay(location_listener.getGeoPoint(), (int) metersToProjectedPixels(radiusToMeters(), location_listener.getLocation().getLatitude()), ROUTE_COLOR);

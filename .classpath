@@ -3,5 +3,6 @@
 	<classpathentry excluding="com/adventure/CompassActivity.java|com/adventure/DirectionsActivity.java|com/obj/Directions.java|com/obj/FullAdventure.java|com/obj/Coord.java|com/obj/Distance.java|com/obj/Duration.java|com/obj/Step.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
