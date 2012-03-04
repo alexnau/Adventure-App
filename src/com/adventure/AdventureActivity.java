@@ -353,7 +353,7 @@ public class AdventureActivity extends BaseActivity {
     	
     	directions_adapter.clear();
     	
-    	placemarks_list.addAll(placemarks);
+    	placemarks_list.add(placemarks.get(0));
     	
     	directions_adapter.notifyDataSetChanged();
     }
