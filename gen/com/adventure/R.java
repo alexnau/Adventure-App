@@ -30,55 +30,66 @@ containing a value of this type.
          */
         public static final int font=0x7f010000;
     }
+    public static final class color {
+        public static final int gold=0x7f080001;
+        /**   Color Choices 
+         */
+        public static final int light_blue=0x7f080000;
+        public static final int white=0x7f080002;
+    }
     public static final class drawable {
-        public static final int icon=0x7f020000;
-        public static final int loc_icon=0x7f020001;
-        public static final int nav_icon=0x7f020002;
+        public static final int background=0x7f020000;
+        public static final int compass=0x7f020001;
+        public static final int icon=0x7f020002;
+        public static final int loc_icon=0x7f020003;
+        public static final int map=0x7f020004;
+        public static final int nav_icon=0x7f020005;
+        public static final int world_map=0x7f020006;
     }
     public static final class id {
-        public static final int about=0x7f0a002a;
-        public static final int atv_title=0x7f0a0020;
-        public static final int btn_compass=0x7f0a0008;
-        public static final int btn_directions=0x7f0a0007;
-        public static final int btn_find_adventure=0x7f0a0021;
-        public static final int btn_mapview=0x7f0a0006;
-        public static final int btn_new_adventure=0x7f0a0026;
-        public static final int btn_next=0x7f0a001f;
-        public static final int btn_previous_adventures=0x7f0a0027;
-        public static final int btn_settings=0x7f0a0028;
-        public static final int et_keywords=0x7f0a0018;
-        public static final int et_name=0x7f0a001a;
-        public static final int fl_compass_frame=0x7f0a0011;
-        public static final int fl_content=0x7f0a000e;
-        public static final int ll_adventure_data=0x7f0a0009;
-        public static final int ll_button_bar=0x7f0a0005;
-        public static final int lv_directions=0x7f0a0010;
-        public static final int lv_previous_adventures=0x7f0a0025;
-        public static final int lv_types=0x7f0a0023;
-        public static final int mapview=0x7f0a000f;
-        public static final int rb_bicycling=0x7f0a001e;
-        public static final int rb_driving=0x7f0a001c;
-        public static final int rb_walking=0x7f0a001d;
-        public static final int rg_mode=0x7f0a001b;
-        public static final int settings=0x7f0a0029;
-        public static final int spr_radius=0x7f0a0022;
-        public static final int tl_data_table=0x7f0a0014;
-        public static final int tv_adventure_name=0x7f0a0013;
-        public static final int tv_description=0x7f0a0001;
-        public static final int tv_destination=0x7f0a0002;
-        public static final int tv_directions=0x7f0a0000;
-        public static final int tv_distance_left=0x7f0a000c;
-        public static final int tv_distance_traveled=0x7f0a0016;
-        public static final int tv_distance_travelled=0x7f0a000a;
-        public static final int tv_duration=0x7f0a0015;
-        public static final int tv_keywords=0x7f0a0017;
-        public static final int tv_name=0x7f0a0019;
-        public static final int tv_prompt=0x7f0a0024;
-        public static final int tv_start_time=0x7f0a0003;
-        public static final int tv_time_left=0x7f0a000d;
-        public static final int tv_time_travelled=0x7f0a000b;
-        public static final int tv_title=0x7f0a0012;
-        public static final int vf_flipper=0x7f0a0004;
+        public static final int about=0x7f0b002a;
+        public static final int atv_title=0x7f0b0020;
+        public static final int btn_compass=0x7f0b0008;
+        public static final int btn_directions=0x7f0b0007;
+        public static final int btn_find_adventure=0x7f0b0021;
+        public static final int btn_mapview=0x7f0b0006;
+        public static final int btn_new_adventure=0x7f0b0026;
+        public static final int btn_next=0x7f0b001f;
+        public static final int btn_previous_adventures=0x7f0b0027;
+        public static final int btn_settings=0x7f0b0028;
+        public static final int et_keywords=0x7f0b0018;
+        public static final int et_name=0x7f0b001a;
+        public static final int fl_compass_frame=0x7f0b0011;
+        public static final int fl_content=0x7f0b000e;
+        public static final int ll_adventure_data=0x7f0b0009;
+        public static final int ll_button_bar=0x7f0b0005;
+        public static final int lv_directions=0x7f0b0010;
+        public static final int lv_previous_adventures=0x7f0b0025;
+        public static final int lv_types=0x7f0b0023;
+        public static final int mapview=0x7f0b000f;
+        public static final int rb_bicycling=0x7f0b001e;
+        public static final int rb_driving=0x7f0b001c;
+        public static final int rb_walking=0x7f0b001d;
+        public static final int rg_mode=0x7f0b001b;
+        public static final int settings=0x7f0b0029;
+        public static final int spr_radius=0x7f0b0022;
+        public static final int tl_data_table=0x7f0b0014;
+        public static final int tv_adventure_name=0x7f0b0013;
+        public static final int tv_description=0x7f0b0001;
+        public static final int tv_destination=0x7f0b0002;
+        public static final int tv_directions=0x7f0b0000;
+        public static final int tv_distance_left=0x7f0b000c;
+        public static final int tv_distance_traveled=0x7f0b0016;
+        public static final int tv_distance_travelled=0x7f0b000a;
+        public static final int tv_duration=0x7f0b0015;
+        public static final int tv_keywords=0x7f0b0017;
+        public static final int tv_name=0x7f0b0019;
+        public static final int tv_prompt=0x7f0b0024;
+        public static final int tv_start_time=0x7f0b0003;
+        public static final int tv_time_left=0x7f0b000d;
+        public static final int tv_time_travelled=0x7f0b000b;
+        public static final int tv_title=0x7f0b0012;
+        public static final int vf_flipper=0x7f0b0004;
     }
     public static final class integer {
         public static final int adventure_complete_radius=0x7f050000;
@@ -105,7 +116,7 @@ containing a value of this type.
         public static final int page_start=0x7f030009;
     }
     public static final class menu {
-        public static final int menu=0x7f090000;
+        public static final int menu=0x7f0a0000;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
@@ -132,11 +143,11 @@ containing a value of this type.
         public static final int view_adventure=0x7f06000b;
     }
     public static final class style {
-        public static final int Button=0x7f080000;
-        public static final int Button_Generic=0x7f080001;
-        public static final int Text=0x7f080002;
-        public static final int Text_Large=0x7f080003;
-        public static final int Text_Title=0x7f080004;
+        public static final int Button=0x7f090000;
+        public static final int Button_Generic=0x7f090001;
+        public static final int Text=0x7f090002;
+        public static final int Text_Large=0x7f090003;
+        public static final int Text_Title=0x7f090004;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

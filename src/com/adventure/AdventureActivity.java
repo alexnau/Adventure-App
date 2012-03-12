@@ -292,7 +292,7 @@ public class AdventureActivity extends BaseActivity {
 				// TODO THIS IS FOR DEBUG ONLY
 				
 				
-				// Parse the start date/time into an actual date
+			/*	// Parse the start date/time into an actual date
 				Calendar cal = Calendar.getInstance();
 				cal.setTimeInMillis(start_time);
 				java.util.Date date = cal.getTime();
@@ -307,12 +307,12 @@ public class AdventureActivity extends BaseActivity {
     			startActivity(i);
 			
     			finish();
-				
+			*/	
     			// TODO THIS IS THE ACTUAL IMPLEMENTATION OF THIS METHOD
-				/*fl_content.getChildAt(2).setVisibility(View.VISIBLE);
+				fl_content.getChildAt(2).setVisibility(View.VISIBLE);
 				
 				fl_content.getChildAt(0).setVisibility(View.GONE);
-				fl_content.getChildAt(1).setVisibility(View.GONE);*/
+				fl_content.getChildAt(1).setVisibility(View.GONE);
 			}
 		});
     	
@@ -353,6 +353,7 @@ public class AdventureActivity extends BaseActivity {
     	
     	directions_adapter.clear();
     	
+    	//We only want the first direction in the list
     	placemarks_list.add(placemarks.get(0));
     	
     	directions_adapter.notifyDataSetChanged();

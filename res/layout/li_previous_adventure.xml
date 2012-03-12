@@ -4,11 +4,13 @@
     android:layout_margin="10dp"
     android:layout_width="fill_parent"
     android:orientation="vertical"
+	
 >
 	<com.view.AdventureTextView
 		style="@style/Text"
 		android:id="@+id/tv_destination"
 		android:layout_width="fill_parent"
+		android:textColor="@color/white"
 		android:textSize="20sp"
 	/>
 	
@@ -18,5 +20,6 @@
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
 		android:layout_below="@id/tv_destination"
+		android:textColor="@color/white"		
 	/>
 </RelativeLayout>
